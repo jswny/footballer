@@ -8,6 +8,7 @@ dependency-reduced-pom.xml
 
 # Node
 node_modules/
+src/main/resources/public/js/bundle.js
 
 # Vim
 *.swp

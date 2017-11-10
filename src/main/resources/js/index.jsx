@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import WeekSelector from './WeekSelector.jsx';
 import Ranking from './Ranking.jsx';
 
 class App extends React.Component {
