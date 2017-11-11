@@ -8,16 +8,14 @@ class Ranking extends React.Component {
         super(props);
         this.state = {
             dataset: null,
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
         };
     }
 
     componentDidMount() {
-        axios.get('/api/rankings/' + this.props.name + '/' + this.props.week)
+        axios.get('/api/rankings/' + this.props.name + '/' + 17)
             .then(res => {
                 this.setState({dataset: res.data}, () => {
                     this.modifyDataset();
-                    this.generateLabels();
                 });
             });
     }
@@ -72,19 +70,32 @@ class Ranking extends React.Component {
         return color;
     }
 
-    generateLabels() {
-        let data = this.state.dataset;
+    generateLabels(dataset) {
         let labels = [];
-        for (let i = 0; i < data[0].data.length; i++) {
+        for (let i = 1; i <= dataset[0].data.length; i++) {
             labels.push(i);
         }
-        this.setState({labels: labels});
+        return labels;
     }
 
     render() {
+        let dataset = this.state.dataset;
+        let labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+        if (dataset != null) {
+            dataset = dataset.map(data => {
+
+                // Copy the object to avoid modifying the object in the state
+                return Object.assign({}, data, {
+                    data: data.data.slice(0, this.props.week)
+                });
+            });
+            labels = this.generateLabels(dataset);
+        }
+
         let data = {
-            labels: this.state.labels,
-            datasets: this.state.dataset,
+            labels: labels,
+            datasets: dataset,
         };
 
         let options = {
