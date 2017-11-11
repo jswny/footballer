@@ -4,7 +4,7 @@ Footballer is an app which pulls data from the NFL website in order to create an
 ## Screenshots
 ![Screenshot 1](https://i.imgur.com/DB219qw.png "Screenshot 1")
 ![Screenshot 2](https://i.imgur.com/pxfzf16.png "Screenshot 2")
-![Screenshot 3](https://i.imgur.com/RMjC66M.png"Screenshot 3")
+![Screenshot 3](https://i.imgur.com/RMjC66M.png "Screenshot 3")
 
 ## Dependencies
 ### Required dependencies
