@@ -1,4 +1,4 @@
-# Footballer
+# Footballer [![Build Status](https://travis-ci.org/jswny/footballer.svg?branch=master)](https://travis-ci.org/jswny/footballer)
 Footballer is an app which pulls data from the NFL website in order to create analytical season rankings.
 
 ## Screenshots
