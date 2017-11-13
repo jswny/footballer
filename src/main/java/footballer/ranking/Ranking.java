@@ -27,7 +27,6 @@ public abstract class Ranking {
         }
     }
 
-    // TODO: coordinate with rank log entry to handle tied initial ranks where there is not a favorite and an underdog
     protected abstract RankLogEntry applyGame(Game game);
 
     public void generateBaselineRankings(String[] teamNames, double increment, double max) {

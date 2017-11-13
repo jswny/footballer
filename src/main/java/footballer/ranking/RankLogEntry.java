@@ -4,8 +4,6 @@ import footballer.Utils;
 import footballer.structure.Game;
 import footballer.structure.Team;
 
-// TODO: make a superclass of this and make two subclasses: one for a game where both teams have the same initial ranks, and one for a normal game where there is a favorite and underdog
-// TODO: fix the bye week detection?
 public class RankLogEntry {
     public final Game game;
     public final Team favorite;

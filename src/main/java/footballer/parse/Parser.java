@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import footballer.Utils;
 import footballer.structure.Season;
 
-// TODO: Create a parser interface (or abstract class) which returns a list of games from the XML to be added to the season
 public class Parser {
     public static Season parseCurrentStructure(int seasonYear, int upToWeek) {
         Season season = Utils.createCurrentStructure(seasonYear);
