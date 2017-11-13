@@ -6,7 +6,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            maxWeek: 9,
+            maxWeek: 17,
             week: 9
         };
     }
