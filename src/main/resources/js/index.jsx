@@ -13,7 +13,6 @@ class App extends React.Component {
 
     setWeek(e) {
         this.setState({week: e.target.value});
-        console.log('Set week to ' + e.target.value);
     }
 
     getWeeksArray() {

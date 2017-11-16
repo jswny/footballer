@@ -1,5 +1,6 @@
 # IntelliJ
 .idea/
+*.iml
 
 # Maven
 target/
@@ -11,3 +12,6 @@ src/main/resources/public/js/bundle.js
 
 # Vim
 *.swp
+
+# Mac
+.DS_Store
