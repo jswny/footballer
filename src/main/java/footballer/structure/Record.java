@@ -1,7 +1,10 @@
 package footballer.structure;
 
+/**
+ * Defines a record for a {@link Team}.
+ */
 public class Record {
-    private Team team;
+    private final Team team;
     private int homeWins;
     private int awayWins;
     private int homeLosses;
@@ -12,17 +15,13 @@ public class Record {
         this.team = team;
         this.homeWins = homeWins;
         this.awayWins = awayWins;
-        this.homeLosses = awayLosses;
+        this.homeLosses = homeLosses;
         this.awayLosses = awayLosses;
         this.ties = ties;
     }
 
     public Team getTeam() {
         return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public int getWins() {
