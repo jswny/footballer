@@ -1,5 +1,8 @@
 package footballer.structure;
 
+/**
+ * Defines an NFL team.
+ */
 public class Team {
     public final String name;
 

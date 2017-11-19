@@ -27,10 +27,10 @@ public class Conference {
     }
 
     /**
-     * Adds a {@link Team} to a {@link Division} in this conference.
-     * @param divisionName the name of the {@link Division} to add the team to
-     * @param teamName the name of the {@link Team} to add
-     * @return the newly added team, or {@code null} if a {@link Division} which matches {@code divisionName} does not exist in this conference
+     * Adds a {@link Team} to a specified {@link Division} in this conference.
+     * @param divisionName the name of the {@link Division} to add the {@link Team} to
+     * @param teamName the name of the {@link Team} to be added
+     * @return the newly added {@link Team}, or {@code null} if a {@link Division} which matches {@code divisionName} does not exist in this conference
      */
     public Team addTeam(String divisionName, String teamName) {
         Division div = getDivision(divisionName);
@@ -39,7 +39,7 @@ public class Conference {
     }
 
     /**
-     * Gets a {@link Division} in this conference.
+     * Gets a {@link Division} in this conference by its name.
      * @param divisionName the name of the {@link Division} to get
      * @return the {@link Division} which matches {@code divisionName}, or {@code null} if no such division exists
      */

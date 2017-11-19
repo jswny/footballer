@@ -20,10 +20,6 @@ public class Record {
         this.ties = ties;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
     public int getWins() {
         return homeWins + awayWins;
     }

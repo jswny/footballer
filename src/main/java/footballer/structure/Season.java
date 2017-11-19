@@ -3,6 +3,9 @@ package footballer.structure;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Defines an NFL season.
+ */
 public class Season {
     public final int year;
     private List<Conference> conferences = new ArrayList<>();
@@ -12,6 +15,11 @@ public class Season {
         year = y;
     }
 
+    /**
+     * Adds a {@link Conference} to this season.
+     * @param conferenceName the name of the {@link Conference} to be added
+     * @return the newly created {@link Conference}, or {@code null} if a {@link Conference} which matches {@code conferenceName} already exists in this season
+     */
     public Conference addConference(String conferenceName) {
         if (getConference(conferenceName) != null) return null;
         Conference conf = new Conference(conferenceName);
@@ -19,12 +27,30 @@ public class Season {
         return conf;
     }
 
+    /**
+     * Adds a {@link Division} to a {@link Conference} in this season.
+     * @param conferenceName the name of the {@link Conference} to add the {@link Division} to
+     * @param divisionName the name of the {@link Division} to be added
+     * @return the newly created {@link Division},
+     * or {@code null} if a {@link Conference} which matches {@code conferenceName} does not exist in this season,
+     * or if a division which matches {@code divisionName} already exists in the specified conference
+     */
     public Division addDivision(String conferenceName, String divisionName) {
         Conference conf = getConference(conferenceName);
         if (conf == null) return null;
         return conf.addDivision(divisionName);
     }
 
+    /**
+     * Adds a {@link Team} to a specified {@link Division} in a specified {@link Conference} in this season.
+     * @param conferenceName the name of the {@link Conference} containing the {@link Division} to add the {@link Team} to
+     * @param divisionName the name of the {@link Division} to add the {@link Team} to
+     * @param teamName the name of the {@link Team} to be added
+     * @return the newly created {@link Team},
+     * or {@code null} if a {@link Conference} which matches {@code conferenceName} does not exist in this season,
+     * or if a {@link Division} which matches {@code divisionName} does not exist in the specified conference,
+     * or if a team which matches {@code teamName} already exists in the specified division
+     */
     public Team addTeam(String conferenceName, String divisionName, String teamName) {
         Conference conf = getConference(conferenceName);
         if (conf == null) return null;
@@ -34,9 +60,9 @@ public class Season {
     }
 
     /**
-     * Adds a week with the specified number to the season.
-     * @param number the number of the week (1, 2, 3, etc.)
-     * @return the newly created week
+     * Adds a {@link Week} to this season.
+     * @param number the number of the week ({@code 1}, {@code 2}, {@code 3}, etc.)
+     * @return the newly created {@link Week}
      */
     public Week addWeek(int number) {
         Week week = new Week(number);
@@ -45,13 +71,16 @@ public class Season {
     }
 
     /**
-     * Adds a game to a specified week number.
-     * @param weekNum the number of the week to add the game to
-     * @param awayTeamName the name of the away team
-     * @param homeTeamName the name of the home team
-     * @param awayTeamScore the score of the away team
-     * @param homeTeamScore the score of the home team
-     * @return the newly created game, or null if the game was not created
+     * Adds a {@link Game} to a {@link Week} in this season.
+     * @param weekNum the number of the {@link Week} to add the {@link Game} to
+     * @param awayTeamName the name of the away {@link Team}
+     * @param homeTeamName the name of the home {@link Team}
+     * @param awayTeamScore the score of the away {@link Team}
+     * @param homeTeamScore the score of the home {@link Team}
+     * @return the newly created {@link Game},
+     * or {@code null} if a {@link Week} which matches {@code weekNum} does not exist in this season,
+     * or if a {@link Team} which matches {@code awayTeamName} does not exist in this season,
+     * or if a {@link Team} which matches {@code homeTeamName} does not exist in this season
      */
     public Game addGame(int weekNum, String awayTeamName, String homeTeamName, int awayTeamScore, int homeTeamScore) {
         Week week = getWeek(weekNum);
@@ -63,7 +92,11 @@ public class Season {
         return game;
     }
 
-
+    /**
+     * Gets a {@link Conference} in this division by its name.
+     * @param conferenceName the name of the {@link Conference} to get
+     * @return the {@link Conference} which matches {@code conferenceName}, or {@code null} if no such conference exists
+     */
     public Conference getConference(String conferenceName) {
         for (Conference conf : conferences) {
             if (conf.name.equals(conferenceName)) return conf;
@@ -71,6 +104,14 @@ public class Season {
         return null;
     }
 
+    /**
+     * Gets a {@link Division} in a specified {@link Conference} in this season by its name.
+     * @param conferenceName the name of the {@link Conference} to get the {@link Division} from
+     * @param divisionName the name of the {@link Division} to get
+     * @return the {@link Division} which matches {@code divisionName} in the {@link Conference} which matches {@code conferenceName} in this season,
+     * or {@code null} if no such division exists,
+     * or if no such conference exists
+     */
     public Division getDivision(String conferenceName, String divisionName) {
         Conference conf = getConference(conferenceName);
         if (conf == null) return null;
@@ -79,6 +120,11 @@ public class Season {
         return div;
     }
 
+    /**
+     * Gets a {@link Team} in this season by its name.
+     * @param teamName the name of the {@link Team} to get
+     * @return the {@link Team} which matches {@code teamName}, or {@code null} if no such team exists
+     */
     public Team getTeam(String teamName) {
         for (Team team : getTeams()) {
             if (team.name.equals(teamName)) return team;
@@ -86,6 +132,11 @@ public class Season {
         return null;
     }
 
+    /**
+     * Gets a {@link Week} in this season by its number.
+     * @param weekNum the number of the {@link Week} to get
+     * @return the {@link Week} which matches {@code weekNum}, or {@code null} if no such week exists
+     */
     public Week getWeek(int weekNum) {
         for (Week week : weeks) {
             if (week.number == weekNum) return week;
@@ -93,6 +144,10 @@ public class Season {
         return null;
     }
 
+    /**
+     * Gets a list of all {@link Team}s in this season.
+     * @return a {@link List} of all {@link Team}s in this season
+     */
     public List<Team> getTeams() {
         List<Team> teams = new ArrayList<>();
         for (Conference conf : conferences) {
@@ -101,10 +156,19 @@ public class Season {
         return teams;
     }
 
+    /**
+     * Gets a list of all {@link Week}s in this season.
+     * @return a {@link List} of all {@link Week}s in this season
+     *
+     */
     public List<Week> getWeeks() {
         return weeks;
     }
 
+    /**
+     * Gets a list of all {@link Game}s in this season.
+     * @return a {@link List} of all {@link Game}s in this season
+     */
     public List<Game> getGames() {
         List<Game> games = new ArrayList<>();
         for (Week week : weeks) {
@@ -113,6 +177,11 @@ public class Season {
         return games;
     }
 
+    /**
+     * Gets a {@link Record} for a {@link Team} in this season by its name.
+     * @param teamName the name of the {@link Team} to get the {@link Record} for
+     * @return the {@link Record} for the {@link Team} which matches {@code teamName}, or {@code null} if no such team exists
+     */
     public Record getRecord(String teamName) {
         Team team = getTeam(teamName);
         if (team == null) return null;
@@ -142,6 +211,10 @@ public class Season {
         return new Record(team, homeWins, awayWins, homeLosses, awayLosses, ties);
     }
 
+    /**
+     * Gets a list of all {@link Record}s for {@link Team}s in this season.
+     * @return a {@link List} of {@link Record}s for all teams in this season
+     */
     public List<Record> getRecords() {
         List<Record> records = new ArrayList<>();
         for (Team team : getTeams()) {
@@ -149,11 +222,6 @@ public class Season {
         }
         return records;
     }
-
-//	public Ranking getRanking(Ranking ranking) {
-//		ranking.applyGames(this);
-//		return ranking;
-//	}
 
     @Override
     public String toString() {

@@ -1,5 +1,8 @@
 package footballer.structure;
 
+/**
+ * Defines an NFL game.
+ */
 public class Game {
     public final Team awayTeam;
     public final Team homeTeam;
@@ -17,7 +20,7 @@ public class Game {
 
     /**
      * Determines the winner of the game.
-     * @return the winning team, or null if the game was a tie
+     * @return the winning {@link Team}, or {@code null} if the game was a tie
      */
     public Team getWinner() {
         if (homeTeamScore == awayTeamScore) {

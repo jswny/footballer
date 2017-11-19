@@ -16,7 +16,7 @@ public class Division {
 
     /**
      * Adds a {@link Team} to this division.
-     * @param teamName the name of the team to be added
+     * @param teamName the name of the {@link Team} to be added
      * @return the newly created {@link Team}, or {@code null} if a {@link Team} which matches {@code teamName} already exists in this division
      */
     public Team addTeam(String teamName) {
@@ -27,8 +27,8 @@ public class Division {
     }
 
     /**
-     * Gets a team by its name.
-     * @param teamName the name of the team to get
+     * Gets a {@link Team} in this division by its name.
+     * @param teamName the name of the {@link Team} to get
      * @return the {@link Team} which matches {@code teamName}, or {@code null} if no such team exists
      */
     public Team getTeam(String teamName) {
