@@ -17,7 +17,7 @@ public class Conference {
     /**
      * Adds a {@link Division} to this conference.
      * @param divisionName the name of the {@link Division} to be added
-     * @return the newly created division, or {@code null} if the {@code divisionName} already exists in this conference
+     * @return the newly created division, or {@code null} if a {@link Division} which matches {@code divisionName} already exists in this conference
      */
     public Division addDivision(String divisionName) {
         if (getDivision(divisionName) != null) return null;
@@ -30,7 +30,7 @@ public class Conference {
      * Adds a {@link Team} to a {@link Division} in this conference.
      * @param divisionName the name of the {@link Division} to add the team to
      * @param teamName the name of the {@link Team} to add
-     * @return the newly added team, or {@code null} if the specified {@code divisionName} does not exist in this conference
+     * @return the newly added team, or {@code null} if a {@link Division} which matches {@code divisionName} does not exist in this conference
      */
     public Team addTeam(String divisionName, String teamName) {
         Division div = getDivision(divisionName);
@@ -41,7 +41,7 @@ public class Conference {
     /**
      * Gets a {@link Division} in this conference.
      * @param divisionName the name of the {@link Division} to get
-     * @return the {@link Division} with a {@code name} field which matches {@code divisionName}, or {@code null} if no such {@link Division} exists
+     * @return the {@link Division} which matches {@code divisionName}, or {@code null} if no such division exists
      */
     public Division getDivision(String divisionName) {
         for (Division div : divisions) {
@@ -52,7 +52,7 @@ public class Conference {
 
     /**
      * Gets a list of all {@link Team}s in this conference.
-     * @return A {@link List} of all {@link Team}s in {@link Division}s in this conference
+     * @return a {@link List} of all {@link Team}s in all {@link Division}s in this conference
      */
     public List<Team> getTeams() {
         List<Team> teams = new ArrayList<>();

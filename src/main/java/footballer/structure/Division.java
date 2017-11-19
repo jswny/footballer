@@ -3,6 +3,9 @@ package footballer.structure;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Defines an NFL division.
+ */
 public class Division {
     public final String name;
     private List<Team> teams = new ArrayList<>();
@@ -11,6 +14,11 @@ public class Division {
         name = n;
     }
 
+    /**
+     * Adds a {@link Team} to this division.
+     * @param teamName the name of the team to be added
+     * @return the newly created {@link Team}, or {@code null} if a {@link Team} which matches {@code teamName} already exists in this division
+     */
     public Team addTeam(String teamName) {
         if (getTeam(teamName) != null) return null;
         Team team = new Team(teamName);
@@ -18,6 +26,11 @@ public class Division {
         return team;
     }
 
+    /**
+     * Gets a team by its name.
+     * @param teamName the name of the team to get
+     * @return the {@link Team} which matches {@code teamName}, or {@code null} if no such team exists
+     */
     public Team getTeam(String teamName) {
         for (Team team : teams) {
             if (team.name.equals(teamName)) return team;
@@ -25,6 +38,10 @@ public class Division {
         return null;
     }
 
+    /**
+     * Gets a list of all {@link Team}s in this division.
+     * @return a {@link List} of all {@link Team}s in this division
+     */
     public List<Team> getTeams() {
         return teams;
     }
