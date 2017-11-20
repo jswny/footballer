@@ -61,7 +61,7 @@ public class Server {
                 throw new RuntimeException("Cannot find dataset for ranking: " + rankingName + "!");
         }
 
-        ranking.generateBaselineRankings(teamNames, 0, maxBaseline);
+        ranking.generateBaselineRanking(teamNames, 0, maxBaseline);
         ranking.applyGames(season);
 
         return new Dataset(ranking.getLog());

@@ -18,9 +18,9 @@ public class Runner {
         Ranking adjustedWinsRanking = new AdjustedWins(teams);
         Ranking self = new SelfBased(teams);
 
-        evenPlayRanking.generateBaselineRankings(teamNames, 0, 16);
-        adjustedWinsRanking.generateBaselineRankings(teamNames, 0, 0);
-        self.generateBaselineRankings(teamNames, 0, 16);
+        evenPlayRanking.generateBaselineRanking(teamNames, 0, 16);
+        adjustedWinsRanking.generateBaselineRanking(teamNames, 0, 0);
+        self.generateBaselineRanking(teamNames, 0, 16);
 
         evenPlayRanking.applyGames(season);
         adjustedWinsRanking.applyGames(season);
