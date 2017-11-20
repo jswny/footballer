@@ -14,26 +14,26 @@ public class Runner {
         String[] teamNames = Utils.espnPreseasonRankings;
 
         List<Team> teams = season.getTeams();
-        Ranking evenPlayRanking = new EvenPlay(teams, 1.0);
-        Ranking adjustedWinsRanking = new AdjustedWins(teams);
-        Ranking self = new SelfBased(teams);
+        RankingSystem evenPlayRankingSystem = new EvenPlay(teams, 1.0);
+        RankingSystem adjustedWinsRankingSystem = new AdjustedWins(teams);
+        RankingSystem self = new SelfBased(teams);
 
-        evenPlayRanking.generateBaselineRanking(teamNames, 0, 16);
-        adjustedWinsRanking.generateBaselineRanking(teamNames, 0, 0);
+        evenPlayRankingSystem.generateBaselineRanking(teamNames, 0, 16);
+        adjustedWinsRankingSystem.generateBaselineRanking(teamNames, 0, 0);
         self.generateBaselineRanking(teamNames, 0, 16);
 
-        evenPlayRanking.applyGames(season);
-        adjustedWinsRanking.applyGames(season);
+        evenPlayRankingSystem.applyGames(season);
+        adjustedWinsRankingSystem.applyGames(season);
         self.applyGames(season);
 
-        System.out.println(evenPlayRanking.getLogForTeam("Dolphins"));
+        System.out.println(evenPlayRankingSystem.getLogForTeam("Dolphins"));
 
-//        System.out.println(evenPlayRanking);
-        System.out.println(adjustedWinsRanking);
+//        System.out.println(evenPlayRankingSystem);
+        System.out.println(adjustedWinsRankingSystem);
 //        System.out.println(self);
 
-//        System.out.println(evenPlayRanking.getCSVData());
-        System.out.println(adjustedWinsRanking.getCSVData());
+//        System.out.println(evenPlayRankingSystem.getCSVData());
+        System.out.println(adjustedWinsRankingSystem.getCSVData());
 //        System.out.println(self.getCSVData());
 
     }

@@ -3,11 +3,11 @@ package footballer.ranking.system;
 import java.util.List;
 import footballer.ranking.Rank;
 import footballer.ranking.RankLogEntry;
-import footballer.ranking.Ranking;
+import footballer.ranking.RankingSystem;
 import footballer.structure.Game;
 import footballer.structure.Team;
 
-public class EvenPlay extends Ranking {
+public class EvenPlay extends RankingSystem {
     private final double dampener;
 
     public EvenPlay(List<Team> teams) {

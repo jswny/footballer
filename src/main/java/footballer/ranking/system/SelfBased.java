@@ -2,12 +2,12 @@ package footballer.ranking.system;
 
 import footballer.ranking.Rank;
 import footballer.ranking.RankLogEntry;
-import footballer.ranking.Ranking;
+import footballer.ranking.RankingSystem;
 import footballer.structure.Game;
 import footballer.structure.Team;
 import java.util.List;
 
-public class SelfBased extends Ranking {
+public class SelfBased extends RankingSystem {
 
     public SelfBased(List<Team> teams) {
         super(teams);

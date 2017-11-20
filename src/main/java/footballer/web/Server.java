@@ -2,7 +2,7 @@ package footballer.web;
 
 import footballer.Utils;
 import footballer.parse.Parser;
-import footballer.ranking.Ranking;
+import footballer.ranking.RankingSystem;
 import footballer.ranking.system.AdjustedWins;
 import footballer.ranking.system.EvenPlay;
 import footballer.ranking.system.SelfBased;
@@ -38,32 +38,32 @@ public class Server {
         String[] teamNames = Utils.espnPreseasonRankings;
         List<Team> teams = season.getTeams();
 
-        Ranking ranking;
+        RankingSystem rankingSystem;
         int maxBaseline;
 
         switch (rankingName) {
             case "evenplay":
                 maxBaseline = 16;
-                ranking = new EvenPlay(teams, 1.0);
+                rankingSystem = new EvenPlay(teams, 1.0);
                 break;
 
             case "adjustedwins":
                 maxBaseline = 0;
-                ranking = new AdjustedWins(teams);
+                rankingSystem = new AdjustedWins(teams);
                 break;
 
             case "selfbased":
                 maxBaseline = 16;
-                ranking = new SelfBased(teams);
+                rankingSystem = new SelfBased(teams);
                 break;
 
             default:
-                throw new RuntimeException("Cannot find dataset for ranking: " + rankingName + "!");
+                throw new RuntimeException("Cannot find dataset for rankingSystem: " + rankingName + "!");
         }
 
-        ranking.generateBaselineRanking(teamNames, 0, maxBaseline);
-        ranking.applyGames(season);
+        rankingSystem.generateBaselineRanking(teamNames, 0, maxBaseline);
+        rankingSystem.applyGames(season);
 
-        return new Dataset(ranking.getLog());
+        return new Dataset(rankingSystem.getLog());
     }
 }
