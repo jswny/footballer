@@ -159,7 +159,6 @@ public class Season {
     /**
      * Gets a list of all {@link Week}s in this season.
      * @return a {@link List} of all {@link Week}s in this season
-     *
      */
     public List<Week> getWeeks() {
         return weeks;

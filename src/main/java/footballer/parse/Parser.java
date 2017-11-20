@@ -15,7 +15,19 @@ import java.util.stream.Collectors;
 import footballer.Utils;
 import footballer.structure.Season;
 
+/**
+ * Parses a source for game information.
+ */
 public class Parser {
+
+    /**
+     * Builds a {@link Season} with the current season structure ({@link Utils#createCurrentStructure(int)}) and fills it in with {@link footballer.structure.Game}s.
+     * This method uses the NFL website to grab game data and populate the season.
+     * @param seasonYear the year of the season to be created and populated with {@link footballer.structure.Game}s
+     * @param upToWeek the last week (inclusive) to populate {@link footballer.structure.Game}s from
+     * @return the {@link Season} specified by the year {@code seasonYear}
+     * populated with {@link footballer.structure.Game}s from {@link footballer.structure.Week} {@code 1} through {@code upToWeek} (inclusive)
+     */
     public static Season parseCurrentStructure(int seasonYear, int upToWeek) {
         Season season = Utils.createCurrentStructure(seasonYear);
 
@@ -55,9 +67,5 @@ public class Parser {
         }
 
         return season;
-    }
-
-    private static String convertStreamToString(InputStream is) {
-        return new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
     }
 }
