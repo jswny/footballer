@@ -1,5 +1,9 @@
 package footballer.ranking;
 
+/**
+ * Defines a pairing of a {@link footballer.structure.Week} number ({@code int}), and a {@link RankLogEntry}.
+ * This class is used (internally) to keep track of each {@link footballer.structure.Team}'s change in {@link Rank} for each week.
+ */
 public class EntryPair {
     public final int week;
     public final RankLogEntry entry;
@@ -8,14 +12,6 @@ public class EntryPair {
         this.week = week;
         this.entry = entry;
     }
-
-//    public static List<Integer> getWeekNumbers(List<EntryPair> pairs) {
-//        List<Integer> result = new ArrayList<>();
-//        for (EntryPair pair : pairs) {
-//            result.add(pair.week);
-//        }
-//        return result;
-//    }
 
     @Override
     public String toString() {
