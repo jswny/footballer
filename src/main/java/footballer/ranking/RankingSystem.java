@@ -101,40 +101,32 @@ public abstract class RankingSystem {
         }
     }
 
+    /**
+     * Gets the {@link RankLog} for this ranking system.
+     * @return the {@link RankLog} for this ranking system
+     */
     public RankLog getLog() {
         return log;
     }
 
-    public String getLogForTeam(String teamName) {
-        String result = teamName + " log:\n\n";
-        for (EntryPair pair : log.getPairsForTeam(teamName)) {
-            if (pair.entry != null) result += pair.entry + "\n";
-        }
-        return result;
-    }
-
-    public List<Double> getTeamValues(String teamName) {
-        return log.getTeamValues(teamName);
-    }
-
-    public Map<String, List<Double>> getAllValues() {
-        return log.getAllValues();
-    }
-
-    public String getCSVData() {
-        return log.getCSVData();
-    }
-
-    public EntryPair getGreatestChange(String teamName) {
-        return log.getGreatestChange(teamName);
-    }
-
-    public Rank getGreaterRank(Team first, Team second) {
+    /**
+     * Determines which of two given {@link Team}s currently has the greater {@link Rank}.
+     * @param first the first {@link Team} to compare
+     * @param second the first {@link Team} to compare
+     * @return the {@link Rank} of {@code first} if its {@link Rank} is greater than the rank of {@code second},
+     * or the rank of {@code second} otherwise
+     */
+    protected Rank getGreaterRank(Team first, Team second) {
         Rank firstRank = getRank(first.name);
         Rank secondRank = getRank(second.name);
         return firstRank.getValue() > secondRank.getValue() ? firstRank : secondRank;
     }
 
+    /**
+     * Gets the {@link Rank} for a given {@link Team}'s name.
+     * @param teamName the name of the {@link Team} to get the {@link Rank} for
+     * @return the {@link Rank} which matches {@code teamName}, or {@code null} if no such rank exists
+     */
     public Rank getRank(String teamName) {
         for (Rank rank : ranks) {
             if (rank.team.name.equals(teamName)) return rank;

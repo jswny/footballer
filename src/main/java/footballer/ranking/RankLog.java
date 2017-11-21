@@ -60,6 +60,14 @@ public class RankLog {
         return result;
     }
 
+    public String getLogForTeam(String teamName) {
+        String result = teamName + " log:\n\n";
+        for (EntryPair pair : getPairsForTeam(teamName)) {
+            if (pair.entry != null) result += pair.entry + "\n";
+        }
+        return result;
+    }
+
     public List<Double> getTeamValues(String teamName) {
         List<Double> result = new ArrayList<>();
         List<EntryPair> teamPairs = getPairsForTeam(teamName);

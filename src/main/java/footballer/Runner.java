@@ -26,15 +26,9 @@ public class Runner {
         adjustedWinsRankingSystem.applyGames(season);
         self.applyGames(season);
 
-        System.out.println(evenPlayRankingSystem.getLogForTeam("Dolphins"));
-
 //        System.out.println(evenPlayRankingSystem);
         System.out.println(adjustedWinsRankingSystem);
 //        System.out.println(self);
-
-//        System.out.println(evenPlayRankingSystem.getCSVData());
-        System.out.println(adjustedWinsRankingSystem.getCSVData());
-//        System.out.println(self.getCSVData());
 
     }
 }
