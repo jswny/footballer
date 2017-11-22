@@ -4,6 +4,25 @@ import footballer.Utils;
 import footballer.structure.Game;
 import footballer.structure.Team;
 
+/**
+ * Defines a single entry for a {@link RankLog}.
+ *
+ * This entry handles two different types of {@link Team}s, a {@code favorite}, and an {@code underdog}.
+ * The {@code favorite} {@link Team} is the team with the higher initial {@link Rank} before the results of a {@link Game} are applied using a {@link RankingSystem},
+ * and the {@code underdog} is the other team.
+ * Currently, support for even initial {@link Rank}s is yet to be added.
+ * Each type of {@link Team} (favorite and underdog) has the following attributes:
+ * <ul>
+ *     <li>
+ *         An initial value ({@code favoriteInitial} or {@code underdogInitial})
+ *         which represents the {@link Rank} of the team before the results of the {@link Game} were applied through the {@link RankingSystem}
+ *     </li>
+ *     <li>
+ *         A new value ({@code favoriteNew} or {@code underdogNew})
+ *         which represents the new {@link Rank} values of the team after the {@link RankingSystem} calculated the new rank based on the results of the {@link Game}.
+ *     </li>
+ * </ul>
+ */
 public class RankLogEntry {
     public final Game game;
     public final Team favorite;
@@ -23,6 +42,13 @@ public class RankLogEntry {
         this.underdogNew = underdogNew;
     }
 
+    /**
+     * Gets the {@code new} {@link Rank} value for a given {@link Team}.
+     * @param teamName the name of the {@link Team} to get the {@code new} value for
+     * @return {@code favoriteNew} if {@code teamName} matches {@code favorite},
+     * or {@code underdogNew} if {@code teamName} matches {@code underdog},
+     * or {@code -1} if neither {@link Team} matches {@code teamName}
+     */
     public double getNewValue(String teamName) {
         if (teamName.equals(favorite.name)) {
             return favoriteNew;
@@ -33,6 +59,13 @@ public class RankLogEntry {
         }
     }
 
+    /**
+     * Gets the {@code initial} {@link Rank} value for a given {@link Team}.
+     * @param teamName the name of the {@link Team} to get the {@code initial} value for
+     * @return {@code favoriteInitial} if {@code teamName} matches {@code favorite},
+     * or {@code underdogInitial} if {@code teamName} matches {@code underdog},
+     * or {@code -1} if neither {@link Team} matches {@code teamName}
+     */
     public double getInitialValue(String teamName) {
         if (teamName.equals(favorite.name)) {
             return favoriteInitial;
@@ -43,6 +76,13 @@ public class RankLogEntry {
         }
     }
 
+    /**
+     * Gets the change in {@link Rank} value for a given {@link Team}, which can be negative.
+     * @param teamName the name of the {@link Team} to get the change in value for
+     * @return {@code favoriteNew - favoriteInitial} if {@code teamName} matches {@code favorite},
+     * or {@code underdogNew - underdogInitial} if {@code teamName} matches {@code underdog},
+     * or {@code -1} if neither {@link Team} matches {@code teamName}
+     */
     public double getDiff(String teamName) {
         if (teamName.equals(favorite.name)) {
             return favoriteNew - favoriteInitial;
@@ -53,6 +93,13 @@ public class RankLogEntry {
         }
     }
 
+    /**
+     * Gets the percent change in {@link Rank} value for a given {@link Team}, which can be negative.
+     * @param teamName the name of the {@link Team} to get the percent change in value for
+     * @return The percent change between {@code favoriteInitial} and {@code favoriteNew} if {@code teamName} matches {@code favorite},
+     * or the percent change between {@code underdogInitial} and {@code underdogNew} if {@code teamName} matches {@code underdog},
+     * or {@code -1} if neither {@link Team} matches {@code teamName}
+     */
     public double getPercentChange(String teamName) {
         double oldVal;
         double newVal;
@@ -68,14 +115,26 @@ public class RankLogEntry {
         return ((newVal - oldVal) / Math.abs(oldVal)) * 100;
     }
 
+    /**
+     * Determines whether a given {@link Team} is a member of this rank log entry.
+     * @param teamName the name of the {@link Team} to check
+     * @return {@code true} if either {@code favorite} or {@code underdog} matches {@code teamName}, or {@code false} otherwise
+     */
     public boolean isMember(String teamName) {
         return favorite.name.equals(teamName) || underdog.name.equals(teamName);
     }
 
+    /**
+     * Prepends {@code +} to the {@link String} form of a given {@code double} if the value is positive.
+     * @param value the value to be prepended to
+     * @return the {@link String} form of {@code value} withe {@code +} prepended to it if the value is positive,
+     * or just the string form of {@code value} otherwise
+     */
     private String applySign(double value) {
         return (value > 0 ? "+" : "") + value;
     }
 
+    @Override
     public String toString() {
         String result = "";
         result += game + "\n";
