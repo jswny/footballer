@@ -1,6 +1,16 @@
 # Footballer [![Build Status](https://travis-ci.org/jswny/footballer.svg?branch=master)](https://travis-ci.org/jswny/footballer)
 Footballer is an app which pulls data from the NFL website in order to create analytical season rankings.
 
+To follow the development of Footballer and see what is currently being worked on, check out the [Footballer Trello board](https://trello.com/b/mNJ4uIv9).
+
+## Goals
+The goals of Footballer are as follows:
+1. Easily gather structured league and season information for easy analytical use.
+2. Allow anyone to easily develop new ranking systems for teams.
+3. Facilitate easy visual comparision of ranking systems.
+4. Produce ranking data which can easily be exported to other platforms (such as CSV).
+5. Gain insights into how different ranking systems are better or worse for certain insights.
+
 ## Screenshots
 ![Screenshot 1](https://i.imgur.com/DB219qw.png "Screenshot 1")
 ![Screenshot 2](https://i.imgur.com/pxfzf16.png "Screenshot 2")
