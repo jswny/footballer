@@ -16,7 +16,7 @@ import footballer.Utils;
 import footballer.structure.Season;
 
 /**
- * Parses a source for game information.
+ * Parses a source for {@link footballer.structure.Game} information.
  */
 public class Parser {
 

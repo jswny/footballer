@@ -6,6 +6,9 @@ import footballer.structure.*;
 import footballer.ranking.system.*;
 import footballer.parse.Parser;
 
+/**
+ * Runner class for testing functionality.
+ */
 public class Runner {
     public static void main(String[] args) {
         Season season = Parser.parseCurrentStructure(2017, 9);
