@@ -10,11 +10,6 @@ import footballer.structure.Team;
 public class EvenPlay extends RankingSystem {
     private final double dampener;
 
-    public EvenPlay(List<Team> teams) {
-        super(teams);
-        dampener = 1.0;
-    }
-
     public EvenPlay(List<Team> teams, double dampener) {
         super(teams);
         this.dampener = dampener;

@@ -75,7 +75,7 @@ public class Server {
                 throw new RuntimeException("Cannot create dataset for ranking system: " + rankingSystemName + "!");
         }
 
-        rankingSystem.generateBaselineRanking(teamNames, 0, maxBaseline);
+        rankingSystem.generateBaselineRanks(teamNames, 0, maxBaseline);
         rankingSystem.applyGames(season);
 
         return new Dataset(rankingSystem.getLog());

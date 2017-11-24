@@ -80,7 +80,7 @@ public abstract class RankingSystem {
      *     <li>{@code increment = 1.0}</li>
      *     <li>{@code max = 32}</li>
      * </ul>
-     * Calling {@code generateBaselineRanking(teamNames, increment, max)} would generate the following {@link Rank}s:
+     * Calling {@code generateBaselineRanks(teamNames, increment, max)} would generate the following {@link Rank}s:
      * <ol>
      *     <li>{@code Patriots: rank 32.0}</li>
      *     <li>{@code Eagles: rank 31.0}</li>
@@ -92,7 +92,7 @@ public abstract class RankingSystem {
      * @param increment the increment to be used between successive {@link Team}s
      * @param max the maximum (starting) {@link Rank} to be assigned to a {@link Team}
      */
-    public void generateBaselineRanking(String[] teamNames, double increment, double max) {
+    public void generateBaselineRanks(String[] teamNames, double increment, double max) {
         double multiplier = 0;
 
         for (String teamName : teamNames) {
