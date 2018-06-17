@@ -2,7 +2,7 @@ package footballer.ranking.system;
 
 import java.util.List;
 import footballer.ranking.Rank;
-import footballer.ranking.RankLogEntry;
+import footballer.ranking.logging.LogEntry;
 import footballer.ranking.RankingSystem;
 import footballer.structure.Game;
 import footballer.structure.Team;
@@ -16,7 +16,7 @@ public class EvenPlay extends RankingSystem {
     }
 
     @Override
-    protected RankLogEntry applyGame(Game game) {
+    protected LogEntry applyGame(Game game) {
         // Determine the favorite and underdog based on which team has the higher rank before any calculations
         Rank favorite = getGreaterRank(game.homeTeam, game.awayTeam);
         Rank underdog = favorite.team == game.homeTeam ? getRank(game.awayTeam.name) : getRank(game.homeTeam.name);
@@ -54,6 +54,6 @@ public class EvenPlay extends RankingSystem {
         favorite.setValue(favoriteNew);
         underdog.setValue(underdogNew);
 
-        return new RankLogEntry(game, favorite.team, underdog.team, favoriteInitial, favoriteNew, underdogInitial, underdogNew);
+        return new LogEntry(game, favorite.team, underdog.team, favoriteInitial, favoriteNew, underdogInitial, underdogNew);
     }
 }

@@ -1,11 +1,13 @@
-package footballer.ranking;
+package footballer.ranking.logging;
 
 import footballer.Utils;
+import footballer.ranking.Rank;
+import footballer.ranking.RankingSystem;
 import footballer.structure.Game;
 import footballer.structure.Team;
 
 /**
- * Defines a single entry for a {@link RankLog}.
+ * Defines a single entry for a {@link Log}.
  *
  * This entry handles two different types of {@link Team}s, a {@code favorite}, and an {@code underdog}.
  * The {@code favorite} {@link Team} is the team with the higher initial {@link Rank} before the results of a {@link Game} are applied using a {@link RankingSystem},
@@ -23,7 +25,7 @@ import footballer.structure.Team;
  *     </li>
  * </ul>
  */
-public class RankLogEntry {
+public class LogEntry {
     public final Game game;
     public final Team favorite;
     public final Team underdog;
@@ -32,7 +34,7 @@ public class RankLogEntry {
     public final double underdogInitial;
     public final double underdogNew;
 
-    public RankLogEntry(Game game, Team favorite, Team underdog, double favoriteInitial, double favoriteNew, double underdogInitial, double underdogNew) {
+    public LogEntry(Game game, Team favorite, Team underdog, double favoriteInitial, double favoriteNew, double underdogInitial, double underdogNew) {
         this.game = game;
         this.favorite = favorite;
         this.underdog = underdog;

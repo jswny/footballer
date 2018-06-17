@@ -1,7 +1,7 @@
 package footballer.ranking.system;
 
 import footballer.ranking.Rank;
-import footballer.ranking.RankLogEntry;
+import footballer.ranking.logging.LogEntry;
 import footballer.ranking.RankingSystem;
 import footballer.structure.Game;
 import footballer.structure.Team;
@@ -12,7 +12,7 @@ public class AdjustedWins extends RankingSystem {
         super(teams);
     }
 
-    public RankLogEntry applyGame(Game game) {
+    public LogEntry applyGame(Game game) {
         // Determine the favorite and underdog based on which team has the higher rank before any calculations
         Rank favorite = getGreaterRank(game.homeTeam, game.awayTeam);
         Rank underdog = favorite.team == game.homeTeam ? getRank(game.awayTeam.name) : getRank(game.homeTeam.name);
@@ -47,6 +47,6 @@ public class AdjustedWins extends RankingSystem {
         favorite.setValue(favoriteNew);
         underdog.setValue(underdogNew);
 
-        return new RankLogEntry(game, favorite.team, underdog.team, favoriteInitial, favoriteNew, underdogInitial, underdogNew);
+        return new LogEntry(game, favorite.team, underdog.team, favoriteInitial, favoriteNew, underdogInitial, underdogNew);
     }
 }

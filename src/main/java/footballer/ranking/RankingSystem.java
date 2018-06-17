@@ -2,8 +2,9 @@ package footballer.ranking;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import footballer.ranking.logging.Log;
+import footballer.ranking.logging.LogEntry;
 import footballer.structure.Game;
 import footballer.structure.Season;
 import footballer.structure.Team;
@@ -18,16 +19,16 @@ import footballer.structure.Week;
  *     <li>A {@link Team}'s overall ranking in the {@link footballer.structure.League} is determined by its position compared to other teams' {@link Rank}s.</li>
  *     <li>{@link Rank}s are calculated on a per-{@link Game} basis, which means that ranks can only change through the context of finished game.</li>
  *     <li>For a given {@link Game}, a ranking system uses both {@link Team}s' initial {@link Rank}s, and the result of the game to determine the change (if any) in ranks.</li>
- *     <li>The initial {@link Rank}s of each {@link Team}, and their new ranks are saved to the {@link RankLog} to maintain a history of rank changes</li>
+ *     <li>The initial {@link Rank}s of each {@link Team}, and their new ranks are saved to the {@link Log} to maintain a history of rank changes</li>
  * </ul>
  */
 public abstract class RankingSystem {
     protected List<Rank> ranks = new ArrayList<>();
-    protected RankLog log;
+    protected Log log;
 
     public RankingSystem(List<Team> teams) {
         for (Team team : teams) ranks.add(new Rank(team));
-        log = new RankLog(teams);
+        log = new Log(teams);
     }
 
     /**
@@ -37,7 +38,7 @@ public abstract class RankingSystem {
     public void applyGames(Season season) {
         for (Week week : season.getWeeks()) {
             for (Game game : week.getGames()) {
-                RankLogEntry entry = applyGame(game);
+                LogEntry entry = applyGame(game);
                 log.addEntry(week.number, entry);
             }
         }
@@ -49,9 +50,9 @@ public abstract class RankingSystem {
      * This method uses a {@link Game} to determine what the new {@link Rank} of each participating {@link Team} should be.
      *
      * @param game the {@link Game} to use to calculate each {@link Team}'s new {@link Rank}
-     * @return a {@link RankLogEntry} which represents the results of calculating each {@link Team}'s change in {@link Rank} based on {@code game} for this ranking system
+     * @return a {@link LogEntry} which represents the results of calculating each {@link Team}'s change in {@link Rank} based on {@code game} for this ranking system
      */
-    protected abstract RankLogEntry applyGame(Game game);
+    protected abstract LogEntry applyGame(Game game);
 
     /**
      * Generates baseline {@link Rank}s for each given {@link Team} to be used in this ranking system.
@@ -102,10 +103,10 @@ public abstract class RankingSystem {
     }
 
     /**
-     * Gets the {@link RankLog} for this ranking system.
-     * @return the {@link RankLog} for this ranking system
+     * Gets the {@link Log} for this ranking system.
+     * @return the {@link Log} for this ranking system
      */
-    public RankLog getLog() {
+    public Log getLog() {
         return log;
     }
 

@@ -28,6 +28,7 @@ public class Rank {
         this.value = value;
     }
 
+    @Override
     public String toString() {
         return "#Rank<Team: " + team.name + ", Value: " + Utils.roundDecimal(value, 2) + ">";
     }
