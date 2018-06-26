@@ -1,14 +1,34 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Ranking from './Ranking.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             maxWeek: 17,
-            week: 9
+            week: 9,
+            divisions: null,
+            currentDivision: null
         };
+
+        axios.get('/api/divisions')
+            .then(res => {
+                this.populateDivisions(res.data);
+            });
+    }
+
+    populateDivisions(data) {
+        console.log(data);
+        let divisions = [];
+        for (let i = 0; i <= data.keys().length; i++) {
+            for (let j = 0; j <= data[i].length; j++) {
+                array.push(data[i] + " " + data[i][j]);
+            }
+        }
+        console.log(divisions);
+        this.setState({divisions: divisions});
     }
 
     setWeek(e) {
@@ -23,9 +43,17 @@ class App extends React.Component {
         return array;
     }
 
+    setDivision(e) {
+        this.setState({currentDivision: e.target.value});
+    }
+
     render () {
-        const array = this.getWeeksArray();
-        const selectOptions = array.map((e) =>
+        const weeksArray = this.getWeeksArray();
+        const weekSelectOptions = weeksArray.map((e) =>
+            <option key={e} value={e}>{e}</option>
+        );
+
+        const divisionSelectOptions = this.state.divisions.map((e) =>
             <option key={e} value={e}>{e}</option>
         );
 
@@ -35,7 +63,12 @@ class App extends React.Component {
 
                 <div>
                     Week:
-                    <select defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{selectOptions}</select>
+                    <select defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{weekSelectOptions}</select>
+                </div>
+
+                <div>
+                    Division:
+                    <select defaultValue={this.state.currentDivision} onChange={this.setDivision().bind(this)}>{divisionSelectOptions}</select>
                 </div>
 
                 <h2>SelfBased</h2>

@@ -8,6 +8,7 @@ class Ranking extends React.Component {
         super(props);
         this.state = {
             dataset: null,
+            divisions: null
         };
     }
 
@@ -22,6 +23,7 @@ class Ranking extends React.Component {
 
     modifyDataset() {
         let dataset = this.state.dataset;
+        console.log(dataset);
         dataset.map(data => {
             data.fill = false;
             data.borderColor = this.getTeamColor(data.label);
