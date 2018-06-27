@@ -14,6 +14,16 @@ import java.util.stream.Collectors;
 import com.google.gson.Gson;
 
 public class Dataset {
+
+    private static class DatasetEntry {
+        public final String label;
+        public final List<Double> data;
+
+        public DatasetEntry(String label, List<Double> data) {
+            this.label = label;
+            this.data = data;
+        }
+    }
     private List<DatasetEntry> entries = new ArrayList<>();
 
     /**
