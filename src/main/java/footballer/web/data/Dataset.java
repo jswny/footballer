@@ -11,6 +11,7 @@ import footballer.structure.Team;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.google.gson.Gson;
 
 public class Dataset {
     private List<DatasetEntry> entries = new ArrayList<>();
@@ -18,7 +19,6 @@ public class Dataset {
     /**
      * Creates a {@link Dataset} for a given {@link RankingSystem} up to a given {@link footballer.structure.Week}.
      * Throws a {@link RuntimeException} if no {@link RankingSystem} which matches {@code rankingSystemName} can be found.
-     *
      * @param rankingSystemName the name of the {@link RankingSystem} to create the {@link Dataset} for
      * @param upToWeek the {@link footballer.structure.Week} maximum number (inclusive) for which the {@link RankingSystem} should be populated
      */
@@ -81,5 +81,15 @@ public class Dataset {
                                     .collect(Collectors.toList());
         entries.stream().filter(entry -> teamNamesInDivision.contains(entry));
         return this;
+    }
+
+    /**
+     * Serializes the {@link Dataset} to JSON using {@link Gson}.
+     * The {@link Dataset} is serialized by serializing the inner array of {@link DatasetEntry}s without any wrapping object.
+     * @return the JSON representation of this {@Dataset}
+     */
+    public String serialize() {
+        Gson gson = new Gson();
+        return gson.toJson(this.getEntries());
     }
 }
