@@ -23,7 +23,7 @@ public class Server {
 
             for (String rS : rankingSystems) {
                 // Generate one default route for each ranking system by week
-                get("/rankings/" + rS + "/:week", (req, res) -> {
+                get("/rankings/" + rS + "/week/:week", (req, res) -> {
                     int week = Integer.parseInt(req.params("week"));
                     Season season = Parser.parseCurrentStructure(2017, week);
                     String result = new Dataset(season, rS, week).serialize();
@@ -31,7 +31,7 @@ public class Server {
                 });
 
                 // Generate one route for each ranking system by week scoped by division
-                get("/rankings/" + rS + "/:week/:conference/:division", (req, res) -> {
+                get("/rankings/" + rS + "/week/:week/:conference/:division", (req, res) -> {
                     int week = Integer.parseInt(req.params("week"));
                     String conference = req.params("conference");
                     String division = req.params("division");

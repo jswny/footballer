@@ -89,7 +89,8 @@ public class Dataset {
                                     .stream()
                                     .map(team -> team.name)
                                     .collect(Collectors.toList());
-        entries.stream().filter(entry -> teamNamesInDivision.contains(entry));
+        List<DatasetEntry> newEntries = entries.stream().filter(entry -> teamNamesInDivision.contains(entry.label)).collect(Collectors.toList());
+        this.entries = newEntries;
         return this;
     }
 
