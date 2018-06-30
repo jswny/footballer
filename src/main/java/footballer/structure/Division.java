@@ -39,7 +39,7 @@ public class Division {
     }
 
     /**
-     * Gets a list of all {@link Team}s in this division.
+     * Gets a {@link List} of all {@link Team}s in this division.
      * @return a {@link List} of all {@link Team}s in this division
      */
     public List<Team> getTeams() {

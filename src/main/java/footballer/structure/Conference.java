@@ -51,7 +51,7 @@ public class Conference {
     }
 
     /**
-     * Gets a list of all {@link Team}s in this conference.
+     * Gets a {@link List} of all {@link Team}s in this conference.
      * @return a {@link List} of all {@link Team}s in all {@link Division}s in this conference
      */
     public List<Team> getTeams() {
@@ -60,6 +60,14 @@ public class Conference {
             teams.addAll(div.getTeams());
         }
         return teams;
+    }
+
+    /**
+     * Gets a {@link List} of all {@link Division}s in this conference.
+     * @return a {@link List} of all {@link Division}s in this conference
+     */
+    public List<Division> getDivisions() {
+        return divisions;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package footballer.web;
 
+import com.google.gson.Gson;
 import footballer.parse.Parser;
 import footballer.structure.Season;
 import static spark.Spark.*;
@@ -20,6 +21,12 @@ public class Server {
         String[] rankingSystems = {"evenplay", "adjustedwins", "selfbased"};
 
         path("/api", () -> {
+            Gson gson = new Gson();
+
+            get("/divisions", (req, res) -> {
+                Season season = Parser.parseCurrentStructure(2017, 1);
+                return season.getDivisionNames();
+            }, gson::toJson);
 
             for (String rS : rankingSystems) {
                 // Generate one default route for each ranking system by week

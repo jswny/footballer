@@ -2,6 +2,7 @@ package footballer.structure;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Defines an NFL season.
@@ -145,7 +146,7 @@ public class Season {
     }
 
     /**
-     * Gets a list of all {@link Team}s in this season.
+     * Gets a {@link List} of all {@link Team}s in this season.
      * @return a {@link List} of all {@link Team}s in this season
      */
     public List<Team> getTeams() {
@@ -157,7 +158,7 @@ public class Season {
     }
 
     /**
-     * Gets a list of all {@link Week}s in this season.
+     * Gets a {@link List} of all {@link Week}s in this season.
      * @return a {@link List} of all {@link Week}s in this season
      */
     public List<Week> getWeeks() {
@@ -165,7 +166,7 @@ public class Season {
     }
 
     /**
-     * Gets a list of all {@link Game}s in this season.
+     * Gets a {@link List} of all {@link Game}s in this season.
      * @return a {@link List} of all {@link Game}s in this season
      */
     public List<Game> getGames() {
@@ -174,6 +175,14 @@ public class Season {
             games.addAll(week.getGames());
         }
         return games;
+    }
+
+    /**
+     * Gets a {@link List} of all {@link Conference}s in this season.
+     * @return a {@link List} of all {@link Conference}s in this season
+     */
+    public List<Conference> getConferences() {
+        return conferences;
     }
 
     /**
@@ -211,7 +220,7 @@ public class Season {
     }
 
     /**
-     * Gets a list of all {@link Record}s for {@link Team}s in this season.
+     * Gets a {@link List} of all {@link Record}s for {@link Team}s in this season.
      * @return a {@link List} of {@link Record}s for all teams in this season
      */
     public List<Record> getRecords() {
@@ -220,6 +229,22 @@ public class Season {
             records.add(getRecord(team.name));
         }
         return records;
+    }
+
+    /**
+     * Gets a {@link List} of all {@link Division} names in this season.
+     * Each division name is composed of the {@link Conference} name, a space, and the {@link Division} name, including capitals.
+     * For example: {@code AFC East}.
+     * @return
+     */
+    public List<String> getDivisionNames() {
+        return this.getConferences()
+                .stream()
+                .flatMap(conf -> {
+                    return conf.getDivisions()
+                            .stream()
+                            .map(division -> conf.name + " " + division.name);
+                }).collect(Collectors.toList());
     }
 
     @Override
