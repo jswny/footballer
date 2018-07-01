@@ -9,14 +9,15 @@ class App extends React.Component {
     this.state = {
       maxWeek: 17,
       week: 9,
-      divisions: null,
-      currentDivision: null
+      divisions: ['None'],
+      currentDivision: 'None'
     };
+  }
 
+  componentDidMount() {
     axios.get('/api/divisions')
       .then(res => {
-        this.setState({divisions: res.data});
-        // this.populateDivisions(res.data);
+        this.setState({divisions: this.state.divisions.concat(res.data)});
       });
   }
 
@@ -33,7 +34,6 @@ class App extends React.Component {
   }
 
   setDivision(e) {
-    console.log(e.target.value);
     this.setState({currentDivision: e.target.value});
   }
 
@@ -43,14 +43,9 @@ class App extends React.Component {
       <option key={e} value={e}>{e}</option>
     );
 
-    let divisions = this.state.divisions;
-    let divisionSelectOptions = null;
-    if (divisions != null) {
-      console.log(divisions);
-      divisionSelectOptions = divisions.map((e) =>
-        <option key={e} value={e}>{e}</option>
-      );
-    }
+    let divisionSelectOptions = this.state.divisions.map((e) =>
+      <option key={e} value={e}>{e}</option>
+    );
 
     return (
       <div>
@@ -67,13 +62,13 @@ class App extends React.Component {
         </div>
 
         <h2>SelfBased</h2>
-        <Ranking name={'selfbased'} week={this.state.week} />
+        <Ranking name={'selfbased'} week={this.state.week} divisionString={this.state.currentDivision} />
 
         <h2>EvenPlay</h2>
-        <Ranking name={'evenplay'} week={this.state.week} />
+        <Ranking name={'evenplay'} week={this.state.week} divisionString={this.state.currentDivision} />
 
         <h2>AdjustedWins</h2>
-        <Ranking name={'adjustedwins'} week={this.state.week} />
+        <Ranking name={'adjustedwins'} week={this.state.week} divisionString={this.state.currentDivision} />
       </div>
     );
   }

@@ -29,16 +29,14 @@ public class Server {
             }, gson::toJson);
 
             for (String rS : rankingSystems) {
-                // Generate one default route for each ranking system by week
-                get("/rankings/" + rS + "/week/:week", (req, res) -> {
+                get("/ranking/" + rS + "/week/:week", (req, res) -> { // Generate one default route for each ranking system by week
                     int week = Integer.parseInt(req.params("week"));
                     Season season = Parser.parseCurrentStructure(2017, week);
                     String result = new Dataset(season, rS, week).serialize();
                     return result;
                 });
 
-                // Generate one route for each ranking system by week scoped by division
-                get("/rankings/" + rS + "/week/:week/:conference/:division", (req, res) -> {
+                get("/ranking/" + rS + "/week/:week/conference/:conference/division/:division", (req, res) -> { // Generate one route for each ranking system by week scoped by division
                     int week = Integer.parseInt(req.params("week"));
                     String conference = req.params("conference");
                     String division = req.params("division");

@@ -13,7 +13,28 @@ class Ranking extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/rankings/' + this.props.name + '/week/' + 17)
+    this.callApi();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps != this.props) { // Prevent the component for constantly updating
+      this.callApi();
+    }
+  }
+
+  buildApiRoute(week, divisionString) {
+    let base = '/api/ranking/' + this.props.name + '/week/' + week;
+    if (divisionString == 'None') {
+      return base;
+    }
+    let split = divisionString.split(" ");
+    let conference = split[0];
+    let division = split[1];
+    return base + '/conference/' + conference + '/division/' + division;
+  }
+
+  callApi() {
+    axios.get(this.buildApiRoute(17, this.props.divisionString))
       .then(res => {
         this.setState({dataset: res.data}, () => {
           this.modifyDataset();
