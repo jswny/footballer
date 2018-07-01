@@ -51,13 +51,11 @@ class App extends React.Component {
       <div>
         <h1>Footballer</h1>
 
-        <div>
-          Week:
-          <select defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{weekSelectOptions}</select>
-        </div>
+        <div id='selectors'>
+          <span>Week:</span>
+          <select id='first-selector' defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{weekSelectOptions}</select>
 
-        <div>
-          Division:
+          <span>Division:</span>
           <select defaultValue={this.state.currentDivision} onChange={this.setDivision.bind(this)}>{divisionSelectOptions}</select>
         </div>
 

@@ -5,3 +5,16 @@ body {
 h1 {
     text-align: center;
 }
+
+#selectors {
+    padding: .5rem 1rem;
+    background: lightgray;
+}
+
+#first-selector {
+    margin-right: 1rem;
+}
+
+#selectors > span {
+    margin-right: .5rem;
+}
