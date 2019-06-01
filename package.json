@@ -10,15 +10,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "axios": "^0.17.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "axios": "^0.17.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "chart.js": "^2.7.1",
-    "react": "^16.0.0",
-    "react-chartjs-2": "^2.6.4",
-    "react-dom": "^16.0.0",
-    "webpack": "^3.8.1"
+    "chart.js": "^2.8.0",
+    "react": "^16.8.6",
+    "react-chartjs-2": "^2.7.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^3.12.0"
   }
 }
