@@ -7,18 +7,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      year: 17,
       maxWeek: 17,
-      week: 9,
+      week: 17,
       divisions: ['None'],
       currentDivision: 'None'
     };
   }
 
   componentDidMount() {
-    axios.get('/api/divisions')
+    axios.get('/api/2017/divisions')
       .then(res => {
         this.setState({divisions: this.state.divisions.concat(res.data)});
       });
+  }
+
+  setYear(e) {
+    this.setState({year: e.target.value});
   }
 
   setWeek(e) {
@@ -52,8 +57,11 @@ class App extends React.Component {
         <h1>Footballer</h1>
 
         <div id='selectors'>
+          <span>Year:</span>
+          <select id='first-selector' defaultValue={this.state.year} onChange={this.setYear.bind(this)}>{yearSelectOptions}</select>
+
           <span>Week:</span>
-          <select id='first-selector' defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{weekSelectOptions}</select>
+          <select defaultValue={this.state.week} onChange={this.setWeek.bind(this)}>{weekSelectOptions}</select>
 
           <span>Division:</span>
           <select defaultValue={this.state.currentDivision} onChange={this.setDivision.bind(this)}>{divisionSelectOptions}</select>
