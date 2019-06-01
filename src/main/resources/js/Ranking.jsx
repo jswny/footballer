@@ -23,7 +23,7 @@ class Ranking extends React.Component {
   }
 
   buildApiRoute(week, divisionString) {
-    let base = '/api/ranking/' + this.props.name + '/week/' + week;
+    let base = '/api/' + this.props.year + '/ranking/' + this.props.name + '/week/' + week;
     if (divisionString == 'None') {
       return base;
     }

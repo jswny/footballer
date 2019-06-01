@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: 17,
+      year: 2018,
       maxWeek: 17,
       week: 17,
       divisions: ['None'],
@@ -30,6 +30,19 @@ class App extends React.Component {
     this.setState({week: e.target.value});
   }
 
+  getCurrentYear() {
+    const date = new Date();
+    return date.getFullYear();
+  }
+
+  getYearsArray() {
+    const array = [];
+    for (let i = 2002; i <= this.getCurrentYear(); i++) {
+      array.push(i);
+    }
+    return array;
+  }
+
   getWeeksArray() {
     const array = [];
     for (let i = 1; i <= this.state.maxWeek; i++) {
@@ -43,6 +56,11 @@ class App extends React.Component {
   }
 
   render () {
+    const yearsArray = this.getYearsArray();
+    const yearSelectOptions = yearsArray.map((e) =>
+      <option key={e} value={e}>{e}</option>
+    );
+
     const weeksArray = this.getWeeksArray();
     const weekSelectOptions = weeksArray.map((e) =>
       <option key={e} value={e}>{e}</option>
@@ -68,13 +86,13 @@ class App extends React.Component {
         </div>
 
         <h2>SelfBased</h2>
-        <Ranking name={'selfbased'} week={this.state.week} divisionString={this.state.currentDivision} />
+        <Ranking name={'selfbased'} year={this.state.year} week={this.state.week} divisionString={this.state.currentDivision} />
 
         <h2>EvenPlay</h2>
-        <Ranking name={'evenplay'} week={this.state.week} divisionString={this.state.currentDivision} />
+        <Ranking name={'evenplay'} year={this.state.year} week={this.state.week} divisionString={this.state.currentDivision} />
 
         <h2>AdjustedWins</h2>
-        <Ranking name={'adjustedwins'} week={this.state.week} divisionString={this.state.currentDivision} />
+        <Ranking name={'adjustedwins'} year={this.state.year} week={this.state.week} divisionString={this.state.currentDivision} />
       </div>
     );
   }
