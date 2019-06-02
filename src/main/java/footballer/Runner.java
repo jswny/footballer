@@ -14,7 +14,7 @@ public class Runner {
         Season season = Parser.parseCurrentStructure(2017, 9);
 //		Season season = Parser.parseCurrentStructure(2016, 17);
 
-        String[] teamNames = Utils.espnPreseasonRankings;
+        String[] teamNames = Utils.espnPreseasonRankings2017;
 
         List<Team> teams = season.getTeams();
         RankingSystem evenPlayRankingSystem = new EvenPlay(teams, 1.0);

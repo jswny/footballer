@@ -1,5 +1,7 @@
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 h1 {

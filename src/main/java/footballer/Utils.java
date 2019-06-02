@@ -43,12 +43,12 @@ public class Utils {
     };
 
     /**
-     * Defines a list of {@link Team} names in order according to ESPN's final preseason rankings.
+     * Defines a list of {@link Team} names in order according to ESPN's final preseason rankings for 2017.
      *
      * For example, the {@code Patriots} are the first {@link Team} in the array, so they are ranked the highest (#1),
      * while the {@code Jets} are the last team in the array, so they are ranked last (#32).
      */
-    public static String[] espnPreseasonRankings = {
+    public static String[] espnPreseasonRankings2017 = {
             "Patriots",
             "Falcons",
             "Seahawks",

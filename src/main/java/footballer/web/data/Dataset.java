@@ -33,7 +33,7 @@ public class Dataset {
      * @param upToWeek the {@link footballer.structure.Week} maximum number (inclusive) for which the {@link RankingSystem} should be populated
      */
     public Dataset(Season season, String rankingSystemName, int upToWeek) {
-        String[] teamNames = Utils.espnPreseasonRankings;
+        String[] teamNames = Utils.espnPreseasonRankings2017;
         List<Team> teams = season.getTeams();
 
         RankingSystem rankingSystem;
@@ -42,7 +42,7 @@ public class Dataset {
         switch (rankingSystemName) {
             case "evenplay":
                 maxBaseline = 16;
-                rankingSystem = new EvenPlay(teams, 1.0);
+                rankingSystem = new EvenPlay(teams, 0.5);
                 break;
 
             case "adjustedwins":
